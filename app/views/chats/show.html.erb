@@ -1,0 +1,11 @@
+<h1 id="room" data-room="<%= @room.id %>" data-user="<%= current_user.id %>"><%= @user.name %> さんとのチャット</h1>
+
+<div class="message" style="width: 400px;">
+    <%= render 'chats/chat', chats: @chats %>
+</div>
+
+<%= form_with model: @chat, data: {remote: true} do |f| %>
+<%= f.text_field :message , id: "chat_textarea" %>
+<%= f.hidden_field :room_id , value: @room.id %>
+<%= f.submit "送信" %>
+<% end %>

@@ -1,0 +1,21 @@
+<table>
+    <tbody>
+        <% book_comments.each do |book_comment| %>
+        <tr>
+            <td><%= attachment_image_tag(book_comment.user, :profile_image, size: "50x50", fallback: "no-image-mini.jpg") %>
+                <br><%= book_comment.user.name%>
+            </td>
+            <td>
+                <div style="height: 50px; width: 600px; border: 1px solid;border-radius: 8px; margin: 5px; line-height: 30px;">
+                    &emsp;<%= book_comment.comment %>
+                </div>
+            </td>
+            <td>
+                <% if book_comment.user == current_user %>
+                <%= link_to "コメント削除" ,book_comments_path(id: book_comment.id), method: :delete , class: "btn-sm btn-danger" ,remote: true %>
+                <% end %>
+            </td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>

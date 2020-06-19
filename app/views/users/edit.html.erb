@@ -1,35 +1,43 @@
 <h2>User info</h2>
+<button>
+    <%= link_to "パスワード編集,退会", edit_user_registration_path %>
+</button>
 
 <%= form_for(@user) do |f| %>
 
 <!-- エラーメッセージ表示-->
-<% if @user.errors.any? %>
-	<h3><%= @user.errors.count %>error occurrence</h3><!--エラーメッセ-->
-	<ul>
-		<% @user.errors.full_messages.each do |message| %>
-		<li><%= message %></li>
-		<% end %>
-	</ul>
+<% if @user.errors.any?  %>
+<div>
+    <h2><%= @user.errors.count %>errors prohibited this obj from being saved:</h2>
+
+    <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+    </ul>
+</div>
 <% end %>
-<!-- エラーメッセージ表示-->
+
 
 <div class="field">
-	<%= f.label :name %>
-	<%= f.text_field :name, class: "name" %>
+    <%= f.label :name %>
+    <%= f.text_field :name, autofocus: true, placeholder:"名前"%>
+
 </div>
 
 <div class="field">
-	<%= f.label :image %>
-	<%= f.attachment_field :profile_image, class: "user_image" %>
+    <%= f.label :image %>
+    <%= f.attachment_field :profile_image, class: "user_image" %>
 </div>
 
 <div class="field">
-	<%= f.label :introduction %>
-	<%= f.text_area :introduction, class: "introduction" %>
+    <%= f.label :introduction %>
+    <%= f.text_area :introduction, class: "introduction" %>
 </div>
 
 <div class="actions">
-	<%= f.submit %>
+    <%= f.submit %>
 </div>
+
 
 <% end %>
